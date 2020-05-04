@@ -24,7 +24,7 @@ public class Orders {
      * 保价费
      */
     private Double insuredFee;
-    private Double decs;
+    private Double desc;
     private Double extra;
     private Double unitPrice;
     private Integer payType;

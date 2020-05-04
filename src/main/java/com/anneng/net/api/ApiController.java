@@ -64,7 +64,7 @@ public class ApiController {
     }
 
     @PostMapping(value = "/list/orders")
-    public ApiResponse listOrdes(OrdersParams params) throws IOException {
+    public ApiResponse listOrdes(@RequestBody OrdersParams params) throws IOException {
         return success(accountService.findOrdersList(params));
     }
 
