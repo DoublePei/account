@@ -38,6 +38,7 @@ public class AccountService {
         if (customers != null && !customers.isEmpty()) {
             throw new MyRuntimeException(String.format("%s 发往 %s 的用户已经存在，请勿重复添加", name, dest));
         }
+        log.info("update user to db :{}", customers.toString());
         return customerConfig.save(customer);
     }
 
@@ -54,9 +55,10 @@ public class AccountService {
     }
 
     public void deleteUser(Long userId) {
+        log.info("delete user from db :{}", userId);
+
         customerConfig.deleteById(userId);
     }
-
     public Customer findOrderByNameAndDest(Orders orders) {
         return findOrderByNameAndDest(orders.getCustomerName(), orders.getDest());
     }
