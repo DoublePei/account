@@ -103,7 +103,7 @@ public class ApiController {
         return success(accountService.findAggPage(params));
     }
 
-    @GetMapping("/download")
+    @PostMapping("/download")
     public void download(HttpServletResponse response, @RequestBody DownLoadData downLoadData) throws IOException {
         // 这里注意 有同学反应使用swagger 会导致各种问题，请直接用浏览器或者用postman
         response.setContentType("application/vnd.ms-excel");
