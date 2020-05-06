@@ -24,7 +24,7 @@ public class Orders {
      * 保价费
      */
     private Double insuredFee;
-    private String describe;
+    private String description;
     private Double extra;
     private Double unitPrice;
     private Integer payType;
@@ -52,7 +52,7 @@ public class Orders {
         if (orders.getGoodsNum() != null) this.goodsNum = orders.getGoodsNum();
         if (orders.getQuantity() != null) this.quantity = orders.getQuantity();
         if (orders.getInsuredFee() != null) this.insuredFee = orders.getInsuredFee();
-        if (orders.getDescribe() != null) this.describe = orders.getDescribe();
+        if (orders.getDescription() != null) this.description = orders.getDescription();
         if (orders.getExtra() != null) this.extra = orders.getExtra();
         if (orders.getUnitPrice() != null) this.unitPrice = orders.getUnitPrice();
         if (orders.getPayType() != null) this.payType = orders.getPayType();
