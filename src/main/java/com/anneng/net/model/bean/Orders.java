@@ -52,7 +52,7 @@ public class Orders {
         if (orders.getGoodsNum() != null) this.goodsNum = orders.getGoodsNum();
         if (orders.getQuantity() != null) this.quantity = orders.getQuantity();
         if (orders.getInsuredFee() != null) this.insuredFee = orders.getInsuredFee();
-        if (orders.getDest() != null) this.dest = orders.getDest();
+        if (orders.getDesc() != null) this.desc = orders.getDesc();
         if (orders.getExtra() != null) this.extra = orders.getExtra();
         if (orders.getUnitPrice() != null) this.unitPrice = orders.getUnitPrice();
         if (orders.getPayType() != null) this.payType = orders.getPayType();
