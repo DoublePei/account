@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,6 +87,10 @@ public class AccountService {
         return ordersPage;
     }
 
+    public List<Orders> getOrderList(OrdersParams params) {
+        return ordersDao.getOrdersListWithOutLimit(params);
+    }
+
     private Integer getSize(Integer size) {
         if (size < 0 || size == null) size = 0;
         return size;
@@ -109,7 +114,11 @@ public class AccountService {
     }
 
     public Orders saveOrders(Orders orders) {
-        return ordersConfig.save(orders);
+        if (orders.getId() == null) {
+            orders.setCreateTime(LocalDateTime.now());
+            orders.setUpdateTime(LocalDateTime.now());
+        }
+        return ordersConfig.save(new Orders().copyOrdersIfNotNull(orders));
     }
 
     public Page findAggPage(AggParams params) {

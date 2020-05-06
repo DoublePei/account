@@ -28,6 +28,13 @@ public class OrdersDao {
         return orders;
     }
 
+    public List<Orders> getOrdersListWithOutLimit(OrdersParams params) {
+        String querySql = buildQuerySql(params);
+        List<Orders> orders = namedParameterJdbcTemplate.getJdbcTemplate()
+                .query(querySql, new BeanPropertyRowMapper<>(Orders.class));
+        return orders;
+    }
+
     public Long getOrdersCount(OrdersParams params) {
         String querySql = buildQuerySql(params);
         String count = "select count(1) from (" + querySql + ") a";
