@@ -48,7 +48,7 @@ public class ApiController {
     }
 
 
-    @GetMapping(value = "/get//order/byName")
+    @GetMapping(value = "/get/order/byName")
     public ApiResponse getUsers(@RequestParam String name,String dest) throws IOException {
         requireNonNull(name, "name不能为空");
         requireNonNull(dest, "dest不能为空");

@@ -49,7 +49,7 @@ public class Excel {
     /**
      * 支付方式
      */
-    private Integer payType;
+    private String payType;
 
     /**
      * 成本

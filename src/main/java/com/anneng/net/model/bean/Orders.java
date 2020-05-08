@@ -1,5 +1,6 @@
 package com.anneng.net.model.bean;
 
+import com.anneng.net.model.enums.PayType;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
@@ -81,7 +82,7 @@ public class Orders {
                 .setQuantity(excel.getQuantity())
                 .setInsuredFee(excel.getInsuredFee())
                 .setExtra(excel.getExtra())
-                .setPayType(excel.getPayType())
+                .setPayType(PayType.of(excel.getPayType()).getCode())
                 .setTotalPrice(excel.getTotalPrice())
                 .setCost(excel.getCost())
                 ;

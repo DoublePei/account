@@ -21,6 +21,15 @@ public enum PayType {
         throw new IllegalArgumentException("unsupported dag node type " + code);
     }
 
+    public static PayType of(String desc) {
+        for (PayType payType : PayType.values()) {
+            if (payType.desc == desc) {
+                return payType;
+            }
+        }
+        throw new IllegalArgumentException("unsupported pay desc type " + desc);
+    }
+
     public int getCode() {
         return this.code;
     }
