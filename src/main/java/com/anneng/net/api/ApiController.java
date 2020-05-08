@@ -47,6 +47,14 @@ public class ApiController {
         return success(accountService.findUser(userId));
     }
 
+
+    @GetMapping(value = "/get//order/byName")
+    public ApiResponse getUsers(@RequestParam String name,String dest) throws IOException {
+        requireNonNull(name, "name不能为空");
+        requireNonNull(dest, "dest不能为空");
+        return success(accountService.findUserByName(name,dest));
+    }
+
     @GetMapping(value = "/list/users")
     public ApiResponse listUsers() throws IOException {
         return success(accountService.findUser());

@@ -60,6 +60,7 @@ public class AccountService {
 
         customerConfig.deleteById(userId);
     }
+
     public Customer findOrderByNameAndDest(Orders orders) {
         return findOrderByNameAndDest(orders.getCustomerName(), orders.getDest());
     }
@@ -130,5 +131,13 @@ public class AccountService {
         ordersPage.setData(ordersDao.getAggList(params));
         ordersPage.setTotal(ordersDao.getAggCount(params));
         return ordersPage;
+    }
+
+    public Customer findUserByName(String name, String dest) {
+        List<Customer> nameAndDest = customerConfig.findByNameAndDest(name, dest);
+        if (nameAndDest != null && nameAndDest.size() != 0) {
+            return nameAndDest.get(0);
+        }
+        return null;
     }
 }
