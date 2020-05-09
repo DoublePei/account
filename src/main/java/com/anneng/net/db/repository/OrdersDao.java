@@ -90,7 +90,7 @@ public class OrdersDao {
                 ",mail_date as date " +
                 ",customer_name as name " +
                 "from orders where 1 = 1 ");
-        appendSql(sb, params.getStartTime(), params.getEndTime(), params.getCompany());
+        appendSqlByMailDate(sb, params.getStartTime(), params.getEndTime(), params.getCompany());
         sb.append(" group by customer_name,mail_date ");
         appendSorted(sb, params.getSortProperties(), params.getSortDirection());
         return sb.toString();
@@ -117,6 +117,25 @@ public class OrdersDao {
                     .append(startTime)
                     .append("' ")
                     .append(" and create_time <= '")
+                    .append(endTime)
+                    .append("' ");
+        }
+        String company = company2;
+        if (!isEmpty(company)) {
+            sb.append(" and customer_name = '")
+                    .append(company)
+                    .append("' ");
+        }
+    }
+
+    private void appendSqlByMailDate(StringBuffer sb, String startTime2, String endTime2, String company2) {
+        String startTime = startTime2;
+        String endTime = endTime2;
+        if (!isEmpty(startTime) && isEmpty(endTime)) {
+            sb.append(" and mail_date >= '")
+                    .append(startTime)
+                    .append("' ")
+                    .append(" and mail_date <= '")
                     .append(endTime)
                     .append("' ");
         }
