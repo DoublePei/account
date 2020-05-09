@@ -4,6 +4,7 @@ import com.anneng.net.model.bean.Orders;
 import com.anneng.net.model.bo.AggBo;
 import com.anneng.net.model.vo.AggParams;
 import com.anneng.net.model.vo.OrdersParams;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -14,6 +15,7 @@ import java.util.List;
 import static org.springframework.util.StringUtils.isEmpty;
 
 @Component
+@Slf4j
 public class OrdersDao {
 
     @Autowired
@@ -46,6 +48,7 @@ public class OrdersDao {
     public List<AggBo> getAggList(AggParams params) {
         String querySql = getAggsListSql(params);
         String limitPage = querySql + " limit " + params.getPage() + "," + params.getSize();
+        log.info("getAggPage sql is {}", limitPage);
         List<AggBo> orders = namedParameterJdbcTemplate.getJdbcTemplate()
                 .query(limitPage, new BeanPropertyRowMapper<>(AggBo.class));
         return orders;
@@ -54,6 +57,7 @@ public class OrdersDao {
     public Long getAggCount(AggParams params) {
         String querySql = getAggsListSql(params);
         String count = "select count(1) from (" + querySql + ") a";
+        log.info("getAggPage count sql is {}", count);
         Long nums = namedParameterJdbcTemplate.getJdbcTemplate()
                 .queryForObject(count, Long.class);
         return nums;
