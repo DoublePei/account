@@ -23,7 +23,7 @@ public enum PayType {
 
     public static PayType of(String desc) {
         for (PayType payType : PayType.values()) {
-            if (payType.desc == desc) {
+            if (payType.desc.equals(desc)) {
                 return payType;
             }
         }
