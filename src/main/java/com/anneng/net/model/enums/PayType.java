@@ -2,7 +2,7 @@ package com.anneng.net.model.enums;
 
 public enum PayType {
 
-    MONTH_PAY(1, "月结"), CASCH(2, "现金"), ARRIVE_PAY(2, "到付"), PAYED(4, "已结");
+    MONTH_PAY(1, "月结"), CASCH(2, "现金"), ARRIVE_PAY(2, "到付"), PAYED(4, "已付");
 
     private int code;
     private String desc;
