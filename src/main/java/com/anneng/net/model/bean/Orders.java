@@ -85,6 +85,8 @@ public class Orders {
                 .setPayType(PayType.of(excel.getPayType()).getCode())
                 .setTotalPrice(excel.getTotalPrice())
                 .setCost(excel.getCost())
+                .setCreateTime(LocalDateTime.now())
+                .setUpdateTime(LocalDateTime.now())
                 ;
     }
 
