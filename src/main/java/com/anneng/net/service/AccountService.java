@@ -119,7 +119,9 @@ public class AccountService {
             orders.setCreateTime(LocalDateTime.now());
             orders.setUpdateTime(LocalDateTime.now());
         }
-        return ordersConfig.save(new Orders().copyOrdersIfNotNull(orders));
+        Orders orders1 = new Orders();
+        Orders ifNotNull = orders1.copyOrdersIfNotNull(orders);
+        return ordersConfig.save(ifNotNull);
     }
 
     public Page findAggPage(AggParams params) {
