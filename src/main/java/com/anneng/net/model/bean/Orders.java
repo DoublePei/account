@@ -2,7 +2,6 @@ package com.anneng.net.model.bean;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.anneng.net.model.enums.PayType;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
@@ -18,49 +17,49 @@ public class Orders {
     @Id
     @ExcelIgnore
     private Long id;
-    @ExcelProperty("寄件日期")
+    @ExcelProperty(value = "寄件日期", index = 1)
     private String mailDate;
-    @ExcelProperty("订单号")
+    @ExcelProperty(value = "订单号", index = 2)
     private String orderNum;
-    @ExcelProperty("寄件公司")
+    @ExcelProperty(value = "寄件公司", index = 3)
     private String customerName;
-    @ExcelProperty("省份")
+    @ExcelProperty(value = "省份", index = 4)
     private String dest;
-    @ExcelProperty("收件人")
+    @ExcelProperty(value = "收件客户", index = 6)
     private String recipient;
     /**
      * 网点
      */
-    @ExcelProperty("目的网点")
+    @ExcelProperty(value = "目的网点", index = 5)
     private String outlets;
-    @ExcelProperty("发货数量")
+    @ExcelProperty(value = "件数", index = 9)
     private Double goodsNum;
-    @ExcelProperty("发货重量")
+    @ExcelProperty(value = "重量/体积", index = 8)
     private Double quantity;
     /**
      * 保价费
      */
-    @ExcelProperty("保价费")
+    @ExcelProperty(value = "保价费", index = 10)
     private Double insuredFee;
-    @ExcelProperty("额外费用")
+    @ExcelProperty(value = "附加费", index = 13)
     private Double extra;
-    @ExcelProperty("单价")
+    @ExcelProperty(value = "单价", index = 11)
     private Double unitPrice;
-    @ExcelProperty("支付方式")
+    @ExcelProperty(value = "计费方式", index = 7)
     private String payType;
-    @ExcelProperty("总金额")
+    @ExcelProperty(value = "总金额", index = 15)
     private Double totalPrice;
-    @ExcelProperty("成本")
+    @ExcelProperty(value = "成本", index = 16)
     private Double cost;
-    @ExcelProperty("利润")
+    @ExcelProperty(value = "利润", index = 17)
     private Double profit;
-    @ExcelProperty("起步价")
+    @ExcelProperty(value = "起步价", index = 12)
     private Double basePrice;
 
-    @ExcelProperty("支付方式")
+    @ExcelProperty(value = "支付方式", index = 14)
     private String priceType;
 
-    @ExcelProperty("描述信息")
+    @ExcelProperty(value = "备注", index = 18)
     private String description;
     @ExcelIgnore
     private LocalDateTime createTime;
