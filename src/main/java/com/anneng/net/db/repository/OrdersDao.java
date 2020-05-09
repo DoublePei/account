@@ -24,7 +24,7 @@ public class OrdersDao {
 
     public List<Orders> getOrdersList(OrdersParams params) {
         String querySql = buildQuerySql(params);
-        String limitPage = querySql + " limit " + params.getPage() + "," + params.getSize();
+        String limitPage = querySql + " limit " + (params.getPage()-1) + "," + params.getSize();
         List<Orders> orders = namedParameterJdbcTemplate.getJdbcTemplate()
                 .query(limitPage, new BeanPropertyRowMapper<>(Orders.class));
         return orders;
@@ -47,7 +47,7 @@ public class OrdersDao {
 
     public List<AggBo> getAggList(AggParams params) {
         String querySql = getAggsListSql(params);
-        String limitPage = querySql + " limit " + params.getPage() + "," + params.getSize();
+        String limitPage = querySql + " limit " + (params.getPage()-1) + "," + params.getSize();
         log.info("getAggPage sql is {}", limitPage);
         List<AggBo> orders = namedParameterJdbcTemplate.getJdbcTemplate()
                 .query(limitPage, new BeanPropertyRowMapper<>(AggBo.class));
@@ -116,7 +116,7 @@ public class OrdersDao {
     private void appendSql(StringBuffer sb, String startTime2, String endTime2, String company2) {
         String startTime = startTime2;
         String endTime = endTime2;
-        if (!isEmpty(startTime) && isEmpty(endTime)) {
+        if (!isEmpty(startTime) && !isEmpty(endTime)) {
             sb.append(" and create_time >= '")
                     .append(startTime)
                     .append("' ")
@@ -135,7 +135,7 @@ public class OrdersDao {
     private void appendSqlByMailDate(StringBuffer sb, String startTime2, String endTime2, String company2) {
         String startTime = startTime2;
         String endTime = endTime2;
-        if (!isEmpty(startTime) && isEmpty(endTime)) {
+        if (!isEmpty(startTime) && !isEmpty(endTime)) {
             sb.append(" and mail_date >= '")
                     .append(startTime)
                     .append("' ")
