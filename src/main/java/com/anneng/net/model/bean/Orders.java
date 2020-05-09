@@ -1,5 +1,7 @@
 package com.anneng.net.model.bean;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.anneng.net.model.enums.PayType;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -14,33 +16,55 @@ import java.time.LocalDateTime;
 public class Orders {
 
     @Id
+    @ExcelIgnore
     private Long id;
+    @ExcelProperty("寄件日期")
+    private String mailDate;
+    @ExcelProperty("订单号")
     private String orderNum;
+    @ExcelProperty("寄件公司")
     private String customerName;
+    @ExcelProperty("省份")
     private String dest;
+    @ExcelProperty("收件人")
     private String recipient;
+    /**
+     * 网点
+     */
+    @ExcelProperty("目的网点")
+    private String outlets;
+    @ExcelProperty("发货数量")
     private Double goodsNum;
+    @ExcelProperty("发货重量")
     private Double quantity;
     /**
      * 保价费
      */
+    @ExcelProperty("保价费")
     private Double insuredFee;
-    private String description;
+    @ExcelProperty("额外费用")
     private Double extra;
+    @ExcelProperty("单价")
     private Double unitPrice;
-    private Integer payType;
+    @ExcelProperty("支付方式")
+    private String payType;
+    @ExcelProperty("总金额")
     private Double totalPrice;
+    @ExcelProperty("成本")
     private Double cost;
+    @ExcelProperty("利润")
     private Double profit;
+    @ExcelProperty("起步价")
     private Double basePrice;
 
-    /**
-     * 网点
-     */
-    private String outlets;
-    private Integer priceType;
-    private String mailDate;
+    @ExcelProperty("支付方式")
+    private String priceType;
+
+    @ExcelProperty("描述信息")
+    private String description;
+    @ExcelIgnore
     private LocalDateTime createTime;
+    @ExcelIgnore
     private LocalDateTime updateTime;
 
 
@@ -82,7 +106,7 @@ public class Orders {
                 .setQuantity(excel.getQuantity())
                 .setInsuredFee(excel.getInsuredFee())
                 .setExtra(excel.getExtra())
-                .setPayType(PayType.of(excel.getPayType()).getCode())
+                .setPayType(excel.getPayType())
                 .setTotalPrice(excel.getTotalPrice())
                 .setCost(excel.getCost())
                 .setCreateTime(LocalDateTime.now())

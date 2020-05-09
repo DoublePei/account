@@ -20,9 +20,21 @@ public enum PriceType {
         }
         throw new IllegalArgumentException("unsupported dag node type " + code);
     }
+    public static PriceType of(String desc) {
+        for (PriceType payType : PriceType.values()) {
+            if (payType.desc.equals(desc)) {
+                return payType;
+            }
+        }
+        throw new IllegalArgumentException("unsupported pay desc type " + desc);
+    }
 
     public int getCode() {
         return this.code;
     }
+    public String getDesc() {
+        return this.desc;
+    }
+
 
 }

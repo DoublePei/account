@@ -48,7 +48,7 @@ public class ExcelExecutor {
         Double price = Double.valueOf(split[0]);
         Double basePrice = Double.valueOf(split[1]);
         orders.setBasePrice(basePrice)
-                .setPriceType(PriceType.HEIGHT.getCode())
+                .setPriceType(PriceType.HEIGHT.getDesc())
                 .setUnitPrice(price);
 
         orders.setTotalPrice(getTotalPrive(orders));
