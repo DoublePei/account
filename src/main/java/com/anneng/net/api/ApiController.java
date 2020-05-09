@@ -118,6 +118,7 @@ public class ApiController {
         response.setCharacterEncoding("utf-8");
         // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
         String fileName = URLEncoder.encode("对账单列表", "UTF-8");
+        params.setSize(100000);
         response.setHeader("Content-disposition", "attachment;filename=" + fileName.getBytes("UTF-8") + ".xlsx");
         EasyExcel.write(response.getOutputStream(), Orders.class).sheet("对账单").doWrite(loadData(params));
     }
