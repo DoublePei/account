@@ -75,11 +75,11 @@ public class OrdersDao {
                     .append(dest)
                     .append("' ");
         }
-        Integer payType = params.getPayType();
+        String payType = params.getPayType();
         if (payType != null) {
-            sb.append(" and pay_type = ")
+            sb.append(" and pay_type = '")
                     .append(payType)
-                    .append(" ");
+                    .append("' ");
         }
         appendSorted(sb, params.getSortProperties(), params.getSortDirection());
         return sb.toString();

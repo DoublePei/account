@@ -12,6 +12,6 @@ public class OrdersParams {
     private String endTime;
     private String company;
     private String dest;
-    private Integer payType;
+    private String payType;
 
 }
