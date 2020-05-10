@@ -64,6 +64,7 @@ public class ExcelExecutor {
     }
 
     private Double getTotalPrive(Orders orders) {
+        double v = 0.0d;
         Double basePrice = orders.getBasePrice();
         Double height = orders.getQuantity();
         Double hPrice = orders.getUnitPrice();
@@ -72,7 +73,15 @@ public class ExcelExecutor {
         if (orders.getTotalPrice() != null && orders.getTotalPrice() != 0) {
             return orders.getTotalPrice();
         }
-        double v = hPrice * height + extra + insuredFee;
+        if (hPrice != null && height != null) {
+            v = hPrice * height;
+        }
+        if (extra != null) {
+            v = v + extra;
+        }
+        if (insuredFee != null) {
+            v = v + insuredFee;
+        }
         return v > basePrice ? v : basePrice;
     }
 
