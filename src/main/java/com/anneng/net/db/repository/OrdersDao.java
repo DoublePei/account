@@ -77,7 +77,7 @@ public class OrdersDao {
                     .append("' ");
         }
         String payType = params.getPayType();
-        if (payType != null) {
+        if (!isEmpty(payType)) {
             sb.append(" and pay_type = '")
                     .append(payType)
                     .append("' ");
