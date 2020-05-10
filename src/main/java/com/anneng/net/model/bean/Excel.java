@@ -56,6 +56,7 @@ public class Excel {
      */
     private Double totalPrice;
 
+
     /**
      * 成本
      */
