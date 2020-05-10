@@ -110,7 +110,7 @@ public class OrdersDao {
                     .append(" ")
                     .append(direction);
         } else {
-            sb.append(" order by create_time desc ");
+            sb.append(" order by mail_date desc ");
         }
     }
 
@@ -118,10 +118,10 @@ public class OrdersDao {
         String startTime = startTime2;
         String endTime = endTime2;
         if (!isEmpty(startTime) && !isEmpty(endTime)) {
-            sb.append(" and create_time >= '")
+            sb.append(" and mail_date >= '")
                     .append(startTime)
                     .append("' ")
-                    .append(" and create_time <= '")
+                    .append(" and mail_date <= '")
                     .append(endTime)
                     .append("' ");
         }
