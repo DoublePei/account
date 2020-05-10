@@ -52,11 +52,13 @@ public class Excel {
     private String payType;
 
     /**
-     * 成本
-     */
-    private Double cost;
-    /**
      * 总金额
      */
     private Double totalPrice;
+
+    /**
+     * 成本
+     */
+    private Double cost;
+
 }
