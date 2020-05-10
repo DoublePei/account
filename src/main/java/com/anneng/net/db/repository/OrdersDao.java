@@ -122,7 +122,7 @@ public class OrdersDao {
                     .append(startTime.split(" ")[0])
                     .append("' ")
                     .append(" and mail_date <= '")
-                    .append(endTime.split(" ")[0])
+                    .append(endTime)
                     .append("' ");
         }
         String company = company2;
@@ -141,7 +141,7 @@ public class OrdersDao {
                     .append(startTime.split(" ")[0])
                     .append("' ")
                     .append(" and mail_date <= '")
-                    .append(endTime.split(" ")[0])
+                    .append(endTime)
                     .append("' ");
         }
         String company = company2;
