@@ -36,7 +36,7 @@ public class AccountService {
         String name = customer.getName();
         String dest = customer.getDest();
         List<Customer> customers = customerConfig.findByNameAndDest(name, dest);
-        if (customers != null && !customers.isEmpty()) {
+        if (customers != null && !customers.isEmpty() & customer.getId() == null) {
             throw new MyRuntimeException(String.format("%s 发往 %s 的用户已经存在，请勿重复添加", name, dest));
         }
         log.info("update user to db :{}", customers.toString());
