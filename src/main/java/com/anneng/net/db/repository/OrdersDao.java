@@ -24,6 +24,7 @@ public class OrdersDao {
 
     public List<Orders> getOrdersList(OrdersParams params) {
         String querySql = buildQuerySql(params);
+        log.info(querySql);
         String limitPage = querySql + " limit " + (params.getPage()-1) + "," + params.getSize();
         List<Orders> orders = namedParameterJdbcTemplate.getJdbcTemplate()
                 .query(limitPage, new BeanPropertyRowMapper<>(Orders.class));
