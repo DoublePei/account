@@ -119,10 +119,10 @@ public class OrdersDao {
         String endTime = endTime2;
         if (!isEmpty(startTime) && !isEmpty(endTime)) {
             sb.append(" and mail_date >= '")
-                    .append(startTime)
+                    .append(startTime.split(" ")[0])
                     .append("' ")
                     .append(" and mail_date <= '")
-                    .append(endTime)
+                    .append(endTime.split(" ")[0])
                     .append("' ");
         }
         String company = company2;
@@ -138,10 +138,10 @@ public class OrdersDao {
         String endTime = endTime2;
         if (!isEmpty(startTime) && !isEmpty(endTime)) {
             sb.append(" and mail_date >= '")
-                    .append(startTime)
+                    .append(startTime.split(" ")[0])
                     .append("' ")
                     .append(" and mail_date <= '")
-                    .append(endTime)
+                    .append(endTime.split(" ")[0])
                     .append("' ");
         }
         String company = company2;
