@@ -8,6 +8,7 @@ import com.anneng.net.db.repository.OrdersDao;
 import com.anneng.net.model.Page;
 import com.anneng.net.model.bean.Customer;
 import com.anneng.net.model.bean.Orders;
+import com.anneng.net.model.bo.CustomerBo;
 import com.anneng.net.model.vo.AggParams;
 import com.anneng.net.model.vo.OrdersParams;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -93,17 +95,20 @@ public class AccountService {
     }
 
     private Integer getSize(Integer size) {
-        if (size < 0 || size == null) size = 0;
+        if (size < 0 || size == null)
+            size = 0;
         return size;
     }
 
     private Integer getPage(Integer page) {
-        if (page < 0 || page == null) page = 0;
+        if (page < 0 || page == null)
+            page = 0;
         return page;
     }
 
     public Orders findOrderById(Long orderId) {
-        return ordersConfig.findById(orderId).get();
+        return ordersConfig.findById(orderId)
+                .get();
     }
 
     public void deleteOrder(Long orderId) {
@@ -111,7 +116,8 @@ public class AccountService {
     }
 
     public void deleteOrder(List<Long> orders) {
-        orders.stream().forEach(this::deleteOrder);
+        orders.stream()
+                .forEach(this::deleteOrder);
     }
 
     public Orders saveOrders(Orders orders) {
@@ -143,8 +149,22 @@ public class AccountService {
         return null;
     }
 
-    public List<Customer> findUserByHeader() {
-        return customerConfig.findAllByHeader();
+    public List<CustomerBo> findUserByHeader() {
+        List<Customer> header = customerConfig.findAllByHeader();
+        List<CustomerBo> customerBos = header.stream()
+                .map(customer -> {
+                    String name = customer.getName();
+                    List<Customer> all = customerConfig.findAllByName(name);
+                    if (all.isEmpty() || all.size() < 2) {
+                        return CustomerBo.from(customer)
+                                .setHashChildren(false);
+                    }
+                    return CustomerBo.from(customer)
+                            .setHashChildren(true);
+                })
+                .collect(Collectors.toList());
+
+        return customerBos;
     }
 
     public List<Customer> findUserByName(String name) {
