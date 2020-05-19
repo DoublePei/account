@@ -13,7 +13,7 @@ public interface CustomerConfig extends CrudRepository<Customer, Long> {
     @Query("select * from customer where name = :customerName and dest = :dest ")
     List<Customer> findByNameAndDest(String customerName, String dest);
 
-    @Query("select * from customer group by name")
+    @Query("select * from (select * from customer group by name order by id limit 1000000) a")
     List<Customer> findAllByHeader();
 
     @Query("select * from customer where name = :customerName")

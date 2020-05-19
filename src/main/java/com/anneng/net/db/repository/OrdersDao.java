@@ -64,7 +64,8 @@ public class OrdersDao {
         return nums;
     }
 
-
+    public static void main(String[] args) {
+    }
     private String buildQuerySql(OrdersParams params) {
 
         StringBuffer sb = new StringBuffer();
