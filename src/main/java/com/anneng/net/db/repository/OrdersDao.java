@@ -84,9 +84,9 @@ public class OrdersDao {
         }
         String orderNum = params.getOrderNum();
         if (!isEmpty(orderNum)) {
-            sb.append(" and order_num like '")
+            sb.append(" and order_num like '%")
                     .append(orderNum)
-                    .append("' ");
+                    .append("%' ");
         }
         appendSorted(sb, params.getSortProperties(), params.getSortDirection());
         return sb.toString();
