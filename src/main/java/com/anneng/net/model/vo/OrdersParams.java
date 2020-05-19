@@ -13,5 +13,5 @@ public class OrdersParams {
     private String company;
     private String dest;
     private String payType;
-
+    private String orderNum;
 }

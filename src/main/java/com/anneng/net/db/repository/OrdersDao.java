@@ -82,6 +82,12 @@ public class OrdersDao {
                     .append(payType)
                     .append("' ");
         }
+        String orderNum = params.getOrderNum();
+        if (!isEmpty(orderNum)) {
+            sb.append(" and order_num = '")
+                    .append(orderNum)
+                    .append("' ");
+        }
         appendSorted(sb, params.getSortProperties(), params.getSortDirection());
         return sb.toString();
     }

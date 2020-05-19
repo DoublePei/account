@@ -142,4 +142,12 @@ public class AccountService {
         }
         return null;
     }
+
+    public List<Customer> findUserByHeader() {
+        return customerConfig.findAllByHeader();
+    }
+
+    public List<Customer> findUserByName(String name) {
+        return customerConfig.findAllByName(name);
+    }
 }
