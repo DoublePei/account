@@ -18,7 +18,7 @@ public class CustomerBo {
     private Double hPrice;
     private Double vPrice;
     private Double basePrice;
-    private Boolean hashChildren;
+    private Boolean hasChildren;
     private List<Customer> children;
 
 

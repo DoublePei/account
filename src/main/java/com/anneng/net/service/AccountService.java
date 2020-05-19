@@ -157,10 +157,10 @@ public class AccountService {
                     List<Customer> all = customerConfig.findAllByName(name);
                     if (all.isEmpty() || all.size() < 2) {
                         return CustomerBo.from(customer)
-                                .setHashChildren(false);
+                                .setHasChildren(false);
                     }
                     return CustomerBo.from(customer)
-                            .setHashChildren(true);
+                            .setHasChildren(true);
                 })
                 .collect(Collectors.toList());
 
