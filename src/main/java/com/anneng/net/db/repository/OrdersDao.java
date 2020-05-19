@@ -84,7 +84,7 @@ public class OrdersDao {
         }
         String orderNum = params.getOrderNum();
         if (!isEmpty(orderNum)) {
-            sb.append(" and order_num = '")
+            sb.append(" and order_num like '")
                     .append(orderNum)
                     .append("' ");
         }
