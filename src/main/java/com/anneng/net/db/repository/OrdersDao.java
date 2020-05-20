@@ -25,7 +25,7 @@ public class OrdersDao {
     public List<Orders> getOrdersList(OrdersParams params) {
         String querySql = buildQuerySql(params);
         log.info(querySql);
-        String limitPage = querySql + " limit " + (params.getPage()-1) + "," + params.getSize();
+        String limitPage = querySql + " limit " + (params.getPage() - 1) * params.getSize() + "," + params.getSize();
         List<Orders> orders = namedParameterJdbcTemplate.getJdbcTemplate()
                 .query(limitPage, new BeanPropertyRowMapper<>(Orders.class));
         return orders;
@@ -48,7 +48,7 @@ public class OrdersDao {
 
     public List<AggBo> getAggList(AggParams params) {
         String querySql = getAggsListSql(params);
-        String limitPage = querySql + " limit " + (params.getPage()-1) + "," + params.getSize();
+        String limitPage = querySql + " limit " + (params.getPage() - 1) * params.getSize() + "," + params.getSize();
         log.info("getAggPage sql is {}", limitPage);
         List<AggBo> orders = namedParameterJdbcTemplate.getJdbcTemplate()
                 .query(limitPage, new BeanPropertyRowMapper<>(AggBo.class));
@@ -66,6 +66,7 @@ public class OrdersDao {
 
     public static void main(String[] args) {
     }
+
     private String buildQuerySql(OrdersParams params) {
 
         StringBuffer sb = new StringBuffer();
@@ -95,13 +96,7 @@ public class OrdersDao {
 
     private String getAggsListSql(AggParams params) {
         StringBuffer sb = new StringBuffer();
-        sb.append("select sum(goods_num) as num " +
-                ",sum(total_price) as price " +
-                ",sum(cost) as cost " +
-                ",sum(profit) as profit " +
-                ",mail_date as date " +
-                ",customer_name as name " +
-                "from orders where 1 = 1 ");
+        sb.append("select sum(goods_num) as num " + ",sum(total_price) as price " + ",sum(cost) as cost " + ",sum(profit) as profit " + ",mail_date as date " + ",customer_name as name " + "from orders where 1 = 1 ");
         appendSqlByMailDate(sb, params.getStartTime(), params.getEndTime(), params.getCompany());
         sb.append(" group by customer_name,mail_date ");
         appendSorted(sb, params.getSortProperties(), params.getSortDirection());
